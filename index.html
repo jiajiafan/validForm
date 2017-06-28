@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="./datePicker/datePicker-min.css">
+</head>
+<body>
+<form action="/saveData" method="post" class="demoform">
+    <ul>
+        <li>
+            <span>*用户名</span>
+            <input type="text" value="" name="name" nullmsg="请填写用户名" errormsg="用户名错误" sucmsg="用户名验证通过" datatype="*" altercss="red" tip="2-8位中文">
+            <div class="Validform_checktip"></div> <!--tiptype为function时需要这一行-->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+        <!--绑定在表单元素上的基本属性：
+          1、nullmsg 当表单元素为空时的提示信息，若值为空，默认提示"请填入信息";
+          2、errormsg 当内容不能通过datatype的验证时的提示，若值为空，默认提示"请输入正确信息";
+          3、sucmsg （5.3+版本有) 当表单元素通过验证时的提示信息，不绑定默认提示"通过信息验证";
+          4、datatype 表单验证规则，内置基本的datatype类型有：*|*6-16|n|n6-16|s|s6-18|p|m|e|url（见validForm.js第199行）
+                     5.2.1+之后，可直接绑定正则，也可做简单的逻辑运算，但不支持括号；如datatype="m|e,*4-18$/"，(即可以是手机号或邮箱，邮箱要符合4到18位字符，这里|是或的意思，逗号，是且的意思)
+          5、alertcss 需要和tip属性配合使用，alertcss指定的样式名red，会在文本框获得焦点时被删除，没有输入内容而失去焦点时重新加上
+          6、tip 表单里的提示信息，获取焦点之后消失，失去焦点时显示，通常和alertcss配合使用
+          "-->
+        <li>
+            <span>*电话</span>
+            <input type="text" value="" placeholder="" name="tel" errormsg="电话号码格式不正确" sucmsg="电话验证通过" datatype="m" ignore="ignore">
+            <div class="Validform_checktip"></div><!--tiptype为function时需要这一行-->
+            <!--
+            7、ignore 该属性值为ignore，添加了该属性的表单，在没有输入内容时忽略对它的校验，有输入时，会根据datatype来验证
+            -->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+        <li>
+            <span>*登录密码</span>
+            <input type="text" name="loginPsw1" nullmsg="请填写登录密码" datatype="/\w{6,16}/">
+            <div class="Validform_checktip"></div><!--tiptype为function时需要这一行-->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+        <li>
+            <span>*确认密码</span>
+            <input type="text" value="" name="loginPsw2" nullmsg="请确认登录密码" sucmsg="确认密码验证通过" datatype="/\w{6,16}/" recheck="loginPsw1">
+            <div class="Validform_checktip"></div><!--tiptype为function时需要这一行-->
+            <!--
+            8. recheck 用来指定需要比较的元素；
+                dome中指与 name="loginPsw1"的元素比较，两次输入密码是否一致,不一致时默认提示"两次密码输入不一致"；
+                指定recheck之后无需绑定errormsg，否则不一致时，提示errormsg的内容；
+            -->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+        <li>
+            <span>*邮箱</span>
+            <input type="text" value="" placeholder="" name="email" nullmsg="请输入邮箱" errormsg="邮箱格式不正确" sucmsg="邮箱验证通过" datatype="e">
+            <div class="Validform_checktip"></div><!--tiptype为function时需要这一行-->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+        <li>
+            <span>*出生日期</span>
+            <input type="text" value="" placeholder="" name="city" class="dp-applied" plugin="datepicker" style="width:298px">
+            <div class="Validform_checktip"></div><!--tiptype为function时需要这一行-->
+        </li>
+        <li></li><!--tiptype为2时需要这一行-->
+    </ul>
+    <!--<input type="hidden" vallue="" nullmsg="验证js中的ignoreHidden参数" datatype="n">-->
+    <input type="submit" value="submit" id="submit" class="btn">
+    <input type="reset" value="reset" class="btn reset">
+    <span id="msgdemo" style="margin-left:30px;"></span>
+</form>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript" src="./common/validForm.js"></script>
+<!--<script type="text/javascript" src="./datePicker/jquery.datePicker-min.js"></script>-->
+<script src="./js/form.js"></script>
+</body>
+</html>
